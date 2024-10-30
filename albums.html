@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אלבומים - שלווה של מקצבים מהדהדים</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="morning-theme.css" id="theme-style">
+</head>
+
+<body>
+    <div class="app-container">
+        <img src="./1.webp" alt="תמונת רקע של אלבומים" class="album-cover">
+        <header class="header">
+            <div class="header-right">
+                <h1 class="album-title">🎵 אלבומים מומלצים</h1>
+                <p class="album-description">גלה אוספים מיוחדים של מוזיקה מרגיעה ומעוררת השראה</p>
+            </div>
+            <div class="header-left">
+                <div id="clock" class="clock"></div>
+                <div class="theme-selector-container">
+                    <div class="theme-selector">
+                        <button class="theme-btn" data-theme="morning" aria-label="ערכת צבעים בוקר">🌅</button>
+                        <button class="theme-btn" data-theme="noon" aria-label="ערכת צבעים צהריים">☀️</button>
+                        <button class="theme-btn" data-theme="evening" aria-label="ערכת צבעים ערב">🌆</button>
+                        <button class="theme-btn" data-theme="night" aria-label="ערכת צבעים לילה">🌙</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="content-area">
+            <aside class="filters-sidebar">
+                <div class="search-filter-container">
+                    <div class="filter-section search">
+                        <h4>חיפוש אלבום:</h4>
+                        <input type="text" id="albumSearchInput" placeholder="חפש אלבומים..."
+                            aria-label="חיפוש אלבומים">
+                    </div>
+                    <div class="filter-section">
+                        <h4>סגנון מוזיקלי:</h4>
+                        <select id="genreFilter" multiple aria-label="סינון לפי סגנון מוזיקלי">
+                            <option value="">כל הסגנונות</option>
+                        </select>
+                    </div>
+                    <div class="filter-section">
+                        <h4>שנת יציאה:</h4>
+                        <select id="yearFilter" aria-label="סינון לפי שנת יציאה">
+                            <option value="">כל השנים</option>
+                        </select>
+                    </div>
+                    <button id="clearAlbumFilters" class="clear-filters-btn" aria-label="נקה את כל הסינונים">נקה
+                        סינונים</button>
+                </div>
+            </aside>
+            <section class="albums-grid" id="albums-list" aria-live="polite">
+                <!-- רשימת האלבומים תתווסף כאן על ידי JavaScript -->
+            </section>
+        </main>
+    </div>
+
+    <script src="albums.js"></script>
+</body>
+
+</html>

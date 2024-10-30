@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 שלווה של מקצבים מהדהדים: שטיח עולמי של חלומות טרופיים 🎶</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="morning-theme.css" id="theme-style">
+
+
+</head>
+
+<body>
+    <div class="app-container">
+        <img src="./4.webp" alt="תמונת אלבום של שלווה של מקצבים מהדהדים" class="album-cover">
+        <header class="header">
+            <div class="header-right">
+                <h1 class="album-title">🌌 שלווה של מקצבים מהדהדים</h1>
+                <p class="album-description">שטיח עולמי של חלומות טרופיים - אוסף מרגיע של מנגינות אקזוטיות המשלבות
+                    סגנונות מוזיקליים מרחבי העולם.</p>
+            </div>
+            <div class="header-left">
+                <div id="clock" class="clock"></div>
+                <div class="theme-selector-container">
+                    <div class="theme-selector">
+                        <button class="theme-btn" data-theme="morning" aria-label="ערכת צבעים בוקר">🌅</button>
+                        <button class="theme-btn" data-theme="noon" aria-label="ערכת צבעים צהריים">☀️</button>
+                        <button class="theme-btn" data-theme="evening" aria-label="ערכת צבעים ערב">🌆</button>
+                        <button class="theme-btn" data-theme="night" aria-label="ערכת צבעים לילה">🌙</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="content-area">
+            <aside class="filters-sidebar">
+                <div class="search-filter-container">
+                    <div class="filter-section search">
+                        <h4>חיפוש:</h4>
+                        <input type="text" id="searchInput" placeholder="חפש שירים..." aria-label="חיפוש שירים"
+                            aria-describedby="searchDescription">
+                        <span id="searchDescription" class="sr-only">הקלד מילות מפתח לחיפוש שירים</span>
+                    </div>
+                    <div class="filter-section">
+                        <h4>ז'אנר:</h4>
+                        <select id="genreFilter" multiple aria-label="סינון לפי ז'אנר">
+                            <option value="">כל הז'אנרים</option>
+                        </select>
+                        <p class="filter-description">בחר ז'אנר אחד או יותר לסינון השירים</p>
+                    </div>
+                    <div class="filter-section">
+                        <h4>קצב (BPM):</h4>
+                        <select id="bpmFilter" multiple aria-label="סינון לפי קצב">
+                            <option value="">כל הקצבים</option>
+                        </select>
+                        <p class="filter-description">בחר קצב אחד או יותר לסינון השירים</p>
+                    </div>
+                    <div class="filter-section">
+                        <h4>כלי נגינה:</h4>
+                        <select id="instrumentFilter" multiple aria-label="סינון לפי כלי נגינה">
+                        </select>
+                        <p class="filter-description">בחר כלי נגינה אחד או יותר לסינון השירים</p>
+                    </div>
+                    <div class="filter-section">
+                        <h4>סגנון:</h4>
+                        <select id="styleFilter" multiple aria-label="סינון לפי סגנון">
+                        </select>
+                        <p class="filter-description">בחר סגנון אחד או יותר לסינון השירים</p>
+                    </div>
+                    <button id="clearFilters" class="clear-filters-btn" aria-label="נקה את כל הסינונים">נקה
+                        סינונים</button>
+                </div>
+            </aside>
+            <section class="songs-grid" id="playlist" aria-live="polite">
+                <!-- רשימת השירים תתווסף כאן על ידי JavaScript -->
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

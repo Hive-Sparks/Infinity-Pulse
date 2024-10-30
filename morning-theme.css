@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #ff9800;
+  --background-color: rgba(245, 227, 196, 0.7);
+  --text-color: #333333;
+  --secondary-background: rgba(255, 213, 79, 0.7);
+  --hover-color: rgba(255, 183, 77, 0.7);
+  --song-background: rgba(255, 248, 225, 0.8);
+  --song-title-color: #b33600;
+  --song-text-color: #4b3329;
+  --bright-text-color: #ff5722;
+  --secondary-background-rgb: 255, 213, 79;
+}

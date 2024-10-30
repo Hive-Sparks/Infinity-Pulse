@@ -1,0 +1,449 @@
+:root {
+  --primary-color: #1db954;
+  --background-color: #3232326e;
+  --text-color: #ffffff;
+  --secondary-background: #1e1e1e;
+  --hover-color: #404040;
+}
+
+/* ערכות צבעים */
+.theme-morning {
+  --primary-color: #ff9800;
+  --background-color: #f5e3c4;
+  --text-color: #333333;
+  --secondary-background: #ffd54f;
+  --hover-color: #ffb74d;
+}
+
+.theme-noon {
+  --primary-color: #4caf50;
+  --background-color: #e8f5e9;
+  --text-color: #1b5e20;
+  --secondary-background: #a5d6a7;
+  --hover-color: #81c784;
+}
+
+.theme-evening {
+  --primary-color: #ff5722;
+  --background-color: #ffccbc;
+  --text-color: #3e2723;
+  --secondary-background: #ffab91;
+  --hover-color: #ff8a65;
+}
+
+.theme-night {
+  --primary-color: #3f51b5;
+  --background-color: #c5cae9;
+  --text-color: #1a237e;
+  --secondary-background: #7986cb;
+  --hover-color: #5c6bc0;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.app-container {
+  width: 94%;
+  height: 94vh;
+  margin: 3vh auto;
+  background-color: var(--background-color);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 0.4px solid #4f4f4f;
+  box-shadow: #4f4f4f 0px 0px 40px 4px;
+}
+
+.album-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+  padding: 15px;
+  background-color: rgba(25, 20, 20, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-right {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.clock {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.theme-selector-container {
+  display: flex;
+  align-items: center;
+}
+
+.theme-selector {
+  display: flex;
+  gap: 5px;
+}
+
+.theme-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-btn:hover,
+.theme-btn.active {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.album-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 0 0 10px 0;
+}
+
+.album-description {
+  font-size: 0.9em;
+  max-width: 800px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.content-area {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 140px);
+}
+
+.filters-sidebar {
+  flex: 0 0 250px;
+  position: sticky;
+  top: 20px;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.songs-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.search-filter-container {
+  background-color: rgba(37, 37, 37, 0.9);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* מונע מהתוכן לצאת מהמסגרת */
+}
+
+.filter-section {
+  margin-bottom: 15px;
+}
+
+.filter-section h4 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.search-filter-container input,
+.search-filter-container select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  background: var(--secondary-background);
+  color: var(--text-color); /* שינוי לצבע טקסט כהה יותר */
+  font-size: 0.9em;
+  box-sizing: border-box;
+}
+
+.search-filter-container input::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.search-filter-container select option {
+  background-color: rgba(var(--secondary-background-rgb), 0.5);
+  color: var(--text-color); /* שינוי לצבע טקסט כהה יותר */
+}
+
+.clear-filters-btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+  font-weight: bold;
+}
+
+.clear-filters-btn:hover {
+  background-color: var(--hover-color);
+}
+
+.song {
+  background: var(--song-background);
+  border-radius: 10px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.song:hover {
+  background: var(--hover-color);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.song-title {
+  font-size: 1.2em;
+  color: var(--song-title-color);
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.prompt {
+  font-size: 0.9em;
+  color: var(--song-text-color);
+  margin-bottom: 10px;
+}
+
+.song-details {
+  font-size: 0.9em;
+  color: var(--song-text-color);
+  opacity: 0.9;
+}
+
+.song-details span {
+  font-weight: bold;
+  color: var(--song-title-color);
+}
+
+.link {
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.link:hover {
+  background: #1ed760;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .filters-sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-right,
+  .header-left {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .header-left {
+    align-items: center;
+    order: -1; /* מעביר את header-left לתחילת ה-flex container */
+  }
+
+  .clock {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+
+  .theme-selector {
+    justify-content: center;
+  }
+
+  .album-title {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .album-description {
+    font-size: 0.8em;
+    text-align: center;
+  }
+
+  .search-filter-container {
+    flex-grow: 0;
+  }
+
+  .clear-filters-btn {
+    margin-top: 15px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .album-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .clock {
+    font-size: 1em;
+  }
+
+  .theme-selector-container {
+    padding: 10px;
+  }
+
+  .theme-btn {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .album-description {
+    font-size: 0.9em;
+  }
+
+  .search-filter-container {
+    padding: 10px; /* מקטין את הפדינג במסכים קטנים */
+  }
+
+  .search-filter-container input,
+  .search-filter-container select {
+    width: 100%; /* מתאים את הרוחב למסכים קטנים */
+  }
+}
+
+/* קוד קיים... */
+
+/* עיצוב פס גלילה בסגנון זכוכית */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* עדכון לאלמנטים עם גלילה */
+.content-area,
+.filters-sidebar,
+.songs-grid {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+/* קוד קיים... */
+
+/* עדכון צבעים נוספים */
+.album-title {
+  color: var(--bright-text-color);
+}
+
+.album-description {
+  color: var(--text-color);
+}
+
+.clock {
+  color: var(--bright-text-color);
+}
+
+.filter-section h4 {
+  color: var(--bright-text-color);
+  margin-bottom: 10px;
+}
+
+/* הוספת סגנון חדש לתיאור הסינון */
+.filter-description {
+  color: var(--text-color);
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+/* הוספת צל לכל הטקסטים באתר */
+body {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}

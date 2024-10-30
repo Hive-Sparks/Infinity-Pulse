@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול משימות - שלווה של מקצבים מהדהדים</title>
+    <link rel="stylesheet" href="tasks-style.css">
+    <link rel="stylesheet" href="morning-theme.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="מערכת ניהול משימות מתקדמת עם תמיכה בתגיות, קטגוריות, תזכורות ועוד">
+    <meta name="version" content="1.0.0">
+    <meta name="author" content="שם המפתח או שם הצוות">
+    <meta name="license" content="MIT">
+</head>
+
+<body>
+    <div class="app-container">
+        <img src="./1.webp" alt="תמונת רקע של משימות" class="album-cover">
+        <header class="header">
+            <div class="header-left">
+                <h1 class="album-title">📝 ניהול משימות</h1>
+                <div id="clock" class="clock"></div>
+            </div>
+            <div class="header-right">
+                <div class="theme-selector">
+                    <button class="theme-btn" data-theme="morning" aria-label="ערכת צבעים בוקר">🌅</button>
+                    <button class="theme-btn" data-theme="noon" aria-label="ערכת צבעים צהריים">☀️</button>
+                    <button class="theme-btn" data-theme="evening" aria-label="ערכת צבעים ערב">🌆</button>
+                    <button class="theme-btn" data-theme="night" aria-label="ערכת צבעים לילה">🌙</button>
+                </div>
+                <div class="size-controls">
+                    <button id="decreaseSize" aria-label="הקטן גודל">-</button>
+                    <button id="resetSize" aria-label="אפס גודל">א</button>
+                    <button id="increaseSize" aria-label="הגדל גודל">+</button>
+                </div>
+            </div>
+        </header>
+        <main class="content-area">
+            <aside class="tasks-sidebar">
+                <div class="sidebar-section">
+                    <h4>הוספת משימה</h4>
+                    <div class="sidebar-section-content">
+                        <form id="addTaskForm" class="task-input-container">
+                            <div class="input-row">
+                                <input type="text" id="taskInput" placeholder="הוסף משימה חדשה..." required>
+                                <input type="date" id="taskDueDate" aria-label="תאריך יעד למשימה">
+                            </div>
+                            <div class="input-row">
+                                <select id="taskPriority" aria-label="עדיפות המשימה">
+                                    <option value="1">גבוהה</option>
+                                    <option value="2" selected>בינונית</option>
+                                    <option value="3">נמוכה</option>
+                                </select>
+                                <input type="text" id="taskTags" placeholder="תגיות (מופרדות בפסיקים)"
+                                    aria-label="תגיות למשימה">
+                            </div>
+                            <div class="input-row">
+                                <input type="text" id="taskCategory" placeholder="קטגוריה" aria-label="קטגוריה למשימה">
+                                <input type="datetime-local" id="taskReminder" aria-label="תזכורת למשימה">
+                            </div>
+                            <button type="submit" id="addTask" aria-label="הוסף משימה">
+                                <i class="fas fa-plus"></i> הוסף משימה
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h4>סינון וחיפוש</h4>
+                    <div class="sidebar-section-content">
+                        <div class="task-filter-container">
+                            <h4>סינון משימות:</h4>
+                            <select id="taskFilter" aria-label="סינון משימות">
+                                <option value="all">כל המשימות</option>
+                                <option value="active">משימות פעילות</option>
+                                <option value="completed">משימות שהושלמו</option>
+                            </select>
+                            <input type="text" id="categoryFilter" placeholder="סנן לפי קטגוריה"
+                                aria-label="סנן לפי קטגוריה">
+                            <input type="text" id="tagFilter" placeholder="סנן לפי תגית" aria-label="סנן לפי תגית">
+                        </div>
+                        <div class="task-sort-container">
+                            <h4>מיון משימות:</h4>
+                            <select id="taskSort" aria-label="מיון משימות">
+                                <option value="dateAdded">לפי תאריך הוספה</option>
+                                <option value="priority">לפי עדיפות</option>
+                                <option value="alphabetical">לפי סדר אלפביתי</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h4>סטטיסטיקות</h4>
+                    <div class="sidebar-section-content">
+                        <div class="task-stats">
+                            <h4>סטטיסטיקות:</h4>
+                            <p>סה"כ משימות: <span id="totalTasks">0</span></p>
+                            <p>משימות פעילות: <span id="activeTasks">0</span></p>
+                            <p>משימות שהושלמו: <span id="completedTasks">0</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h4>פעולות</h4>
+                    <div class="sidebar-section-content">
+                        <div class="task-actions">
+                            <button id="exportTasks">ייצוא משימות</button>
+                            <button id="importTasks">ייבוא משימות</button>
+                            <input type="file" id="importTasksFile" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <section class="tasks-main">
+                <div class="task-search-container">
+                    <input type="text" id="taskSearch" placeholder="חפש משימות..." aria-label="חפש משימות">
+                </div>
+                <div class="tasks-list" id="tasksList" aria-live="polite">
+                    <!-- רשימת המשימות תתווסף כאן על ידי JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+            <h2>עריכת משימה</h2>
+            <form id="editTaskForm">
+                <input type="text" id="editTaskText" required>
+                <input type="date" id="editTaskDueDate">
+                <select id="editTaskPriority">
+                    <option value="1">גבוהה</option>
+                    <option value="2">בינונית</option>
+                    <option value="3">נמוכה</option>
+                </select>
+                <input type="text" id="editTaskTags" placeholder="תגיות (מופרדות בפסיקים)">
+                <input type="text" id="editTaskCategory" placeholder="קטגוריה">
+                <input type="datetime-local" id="editTaskReminder">
+                <button type="submit">שמור שינויים</button>
+                <button type="button" id="closeEditModal">ביטול</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="tasks.js"></script>
+    <footer>
+        <p>גרסה 1.0.0 | <a href="https://github.com/your-username/your-repo" target="_blank">קוד פתוח בגיטהאב</a> |
+            רישיון MIT</p>
+    </footer>
+</body>
+
+</html>
